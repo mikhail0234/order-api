@@ -6,13 +6,15 @@ from django.db import models
 class Categories(models.Model):
     name = models.CharField(max_length=40)
 
-def __str__(self):
-    return '%s' % (self.name)
+
+
+def __unicode__(self):
+    return u'%s' % (self.name)
 
 class Dish(models.Model):
     title = models.CharField(max_length=40)
     price = models.IntegerField()
-    category = models.ForeignKey(Categories)
+    category = models.ForeignKey(Categories, default=id(1))
 
 def __str__(self):
     return '%s %d %s' % (self.title, self.price, self.category)
