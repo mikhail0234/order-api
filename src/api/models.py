@@ -4,7 +4,6 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-
 class Categories(models.Model):
     name = models.CharField(max_length=40)
 
@@ -20,8 +19,6 @@ class Dish(models.Model):
     def __str__(self):
         return self.title
 
-def __str__(self):
-    return '%s %d %s' % (self.title, self.price, self.category)
 
 class Restaurant(models.Model):
     name = models.CharField(max_length=40)
@@ -40,12 +37,8 @@ class Order(models.Model):
     )
 
     orderList = models.ManyToManyField(Dish)
-
-
-
-
     totalPrice = models.IntegerField('Цена:', default=0, editable=False)
-    user = models.CharField(max_length=40)
+    user = models.ForeignKey(User)
     created_at = models.DateTimeField(auto_now_add=True)
     restaurant = models.ForeignKey(Restaurant)
     status = models.CharField(max_length=2, choices=SHIRT_SIZES, default=1)
